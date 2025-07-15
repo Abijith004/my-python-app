@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculus Calculator</title>
+    <style>
+        body { font-family: Arial; margin: 50px; text-align: center; }
+        input, button { margin: 10px; padding: 10px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Calculus Calculator!</h1>
+    <form method="POST">
+        <input type="text" name="function" placeholder="Enter function, e.g., x**2 + 3*x + 1" required>
+        <select name="operation" onchange="togglePointInput(this.value)">
+            <option value="derivative">Derivative</option>
+            <option value="limit">Limit</option>
+        </select><br>
+        <div id="point-input" style="display:none;">
+            <input type="number" step="any" name="point" placeholder="Limit at x = ?" />
+        </div>
+        <button type="submit">Calculate</button>
+    </form>
+
+    {% if result %}
+        <h2>Result: {{ result }}</h2>
+    {% endif %}
+
+    <script>
+        function togglePointInput(value) {
+            document.getElementById('point-input').style.display = (value === 'limit') ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
